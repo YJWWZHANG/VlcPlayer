@@ -18,8 +18,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mVlcVideoView.setVideoPath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/IISFREE_VIDEO/F.mp4");
-        mVlcVideoView.playVideo();
+        mVlcVideoView.setPath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/IISFREE_VIDEO/F.mp4");
+        mVlcVideoView.setOnCompletionListener(new VlcVideoView.OnCompletionListener() {
+            @Override
+            public void onCompletion() {
+                mVlcVideoView.start();
+            }
+        });
+        mVlcVideoView.start();
     }
 
     @Override
